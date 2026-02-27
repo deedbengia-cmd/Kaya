@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tachung Bakery</title>
+<style>
+body {
+  font-family: Arial;
+  background: #fff8f0;
+  text-align: center;
+}
+
+h1 {
+  background: #8B0000;
+  color: white;
+  padding: 15px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.item {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 5px;
+}
+
+button {
+  background: #8B0000;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #a30000;
+}
+
+.order-box {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Tachung Bakery</h1>
+
+<div class="products">
+
+<div class="item">
+<img src="pizza.jpg">
+<h3>Pizza</h3>
+<p>₹100</p>
+Qty: <input type="number" id="pizza" value="0" min="0">
+</div>
+
+<div class="item">
+<img src="burger.jpg">
+<h3>Burger</h3>
+<p>₹50</p>
+Qty: <input type="number" id="burger" value="0" min="0">
+</div>
+
+<div class="item">
+<img src="blackforest.jpg">
+<h3>Black Forest Cake</h3>
+<p>₹400</p>
+Qty: <input type="number" id="blackforest" value="0" min="0">
+</div>
+
+<div class="item">
+<img src="vanilla.jpg">
+<h3>Vanilla Cake</h3>
+<p>₹500</p>
+Qty: <input type="number" id="vanilla" value="0" min="0">
+</div>
+
+<div class="item">
+<img src="mojito.jpg">
+<h3>Mojito</h3>
+<p>₹80</p>
+Qty: <input type="number" id="mojito" value="0" min="0">
+</div>
+
+<div class="item">
+<img src="coffee.jpg">
+<h3>Black Coffee</h3>
+<p>₹50</p>
+Qty: <input type="number" id="coffee" value="0" min="0">
+</div>
+
+</div>
+
+<div class="order-box">
+<h2>Order Details</h2>
+
+<input type="text" id="name" placeholder="Your Name" required><br><br>
+
+<select id="payment">
+<option value="QR Payment">QR Payment</option>
+<option value="Cash on Delivery">Cash on Delivery</option>
+</select>
+
+<br><br>
+
+<img src="qr.png" width="200"><br><br>
+
+<button onclick="sendOrder()">Place Order</button>
+</div>
+
+<script>
+function sendOrder() {
+
+var name = document.getElementById("name").value;
+
+var pizza = document.getElementById("pizza").value;
+var burger = document.getElementById("burger").value;
+var blackforest = document.getElementById("blackforest").value;
+var vanilla = document.getElementById("vanilla").value;
+var mojito = document.getElementById("mojito").value;
+var coffee = document.getElementById("coffee").value;
+
+var payment = document.getElementById("payment").value;
+
+var total =
+(pizza * 100) +
+(burger * 50) +
+(blackforest * 400) +
+(vanilla * 500) +
+(mojito * 80) +
+(coffee * 50);
+
+var message =
+"New Order from Tachung Bakery%0A%0A" +
+"Name: " + name + "%0A%0A" +
+"Pizza: " + pizza + "%0A" +
+"Burger: " + burger + "%0A" +
+"Black Forest: " + blackforest + "%0A" +
+"Vanilla Cake: " + vanilla + "%0A" +
+"Mojito: " + mojito + "%0A" +
+"Black Coffee: " + coffee + "%0A%0A" +
+"Payment: " + payment + "%0A" +
+"Total: ₹" + total;
+
+var whatsappNumber = "919362734907";
+var url = "https://wa.me/" + whatsappNumber + "?text=" + message;
+
+window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>

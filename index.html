@@ -1,1 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tachung Bakery | Doimukh</title>
 
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#f8f5f2;
+}
+
+header{
+    background:#3e2723;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:28px;
+    letter-spacing:2px;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    background:#5d4037;
+}
+
+nav button{
+    background:none;
+    border:none;
+    color:white;
+    padding:15px 25px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+nav button:hover{
+    background:#3e2723;
+}
+
+.section{
+    display:none;
+    padding:40px 20px;
+}
+
+.active{
+    display:block;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    padding:15px;
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
+    height:150px;
+    object-fit:cover;
+}
+
+.card h3{
+    margin:10px 0 5px;
+}
+
+.card button{
+    background:#6d4c41;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.cart{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#3e2723;
+    color:white;
+    padding:15px 20px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.success{
+    color:green;
+    font-size:20px;
+    margin-top:15px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#3e2723;
+    color:white;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>TACHUNG BAKERY - DOIMUKH</header>
+
+<nav>
+<button onclick="showSection('cakes')">Cakes</button>
+<button onclick="showSection('fastfood')">Fast Food</button>
+<button onclick="showSection('beverages')">Beverages</button>
+</nav>
+
+<!-- CAKES -->
+<div id="cakes" class="section active">
+<h2>Our Premium Cakes</h2>
+<div class="products">
+<div class="card">
+<img src="images/chocolate.jpg">
+<h3>Chocolate Cake</h3>
+<p>₹600</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="images/redvelvet.jpg">
+<h3>Red Velvet</h3>
+<p>₹700</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div>
+</div>
+</div>
+
+<!-- FAST FOOD -->
+<div id="fastfood" class="section">
+<h2>Fast Food</h2>
+<div class="products">
+<div class="card">
+<img src="images/burger.jpg">
+<h3>Burger</h3>
+<p>₹120</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="images/pizza.jpg">
+<h3>Pizza</h3>
+<p>₹250</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div>
+</div>
+</div>
+
+<!-- BEVERAGES -->
+<div id="beverages" class="section">
+<h2>Beverages</h2>
+<div class="products">
+<div class="card">
+<img src="images/coffee.jpg">
+<h3>Cold Coffee</h3>
+<p>₹150</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="images/milkshake.jpg">
+<h3>Milkshake</h3>
+<p>₹180</p>
+<button onclick="addToCart()">Add to Cart</button>
+</div>
+</div>
+</div>
+
+<div class="cart" onclick="openModal()">🛒 Place Order</div>
+
+<!-- ORDER MODAL -->
+<div class="modal" id="orderModal">
+<div class="modal-content">
+<h2>Confirm Order</h2>
+<p>Click below to complete your order.</p>
+<button onclick="completeOrder()" style="padding:10px 20px;background:#6d4c41;color:white;border:none;border-radius:8px;">Confirm</button>
+<div id="successMsg" class="success"></div>
+<br>
+<button onclick="closeModal()" style="margin-top:10px;">Close</button>
+</div>
+</div>
+
+<footer>
+© 2026 Tachung Bakery | Online Orders Available
+</footer>
+
+<script>
+let cartCount = 0;
+
+function showSection(sectionId){
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+}
+
+function addToCart(){
+    cartCount++;
+    alert("Item added to cart!");
+}
+
+function openModal(){
+    document.getElementById("orderModal").style.display="flex";
+}
+
+function closeModal(){
+    document.getElementById("orderModal").style.display="none";
+}
+
+function completeOrder(){
+    document.getElementById("successMsg").innerHTML="🎉 Your Order is Successful!";
+}
+</script>
+
+</body>
+</html>
